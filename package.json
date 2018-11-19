@@ -1,6 +1,6 @@
 {
   "name": "markdown-it-mermaid-less",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "mermaid load plugin for [markdown-it](https://github.com/markdown-it/markdown-it) markdown parser.",
   "license": "MIT",
   "repository": "https://github.com/searKing/markdown-it-mermaid-less",
@@ -25,7 +25,7 @@
     "clean": "rimraf lib && rimraf coverage",
     "format": "prettier --write \"{src,__tests__}/**/*.ts\" --single-quote --trailing-comma es5",
     "lint": "tslint --force --format verbose \"src/**/*.ts\"",
-    "prepublish": "npm run build",
+    "prepare": "npm run build",
     "prebuild": "npm run clean && npm run format && npm run lint && echo Using TypeScript && tsc --version",
     "build": "tsc --pretty",
     "test": "jest",
@@ -34,26 +34,29 @@
     "watch:test": "jest --watch"
   },
   "dependencies": {
+    "eslint": "^5.9.0",
     "file-url": "^2.0.2",
-    "markdown-it": "^8.4.0",
+    "fsevents": "^2.0.1",
+    "lodash": "^4.14.118",
+    "markdown-it": "^8.4.2",
     "markdown-it-container": "^2.0.0",
-    "mermaid": "^7.1.0",
+    "mermaid": "^7.1.2",
     "path": "^0.12.7"
   },
   "devDependencies": {
-    "@types/jest": "^20.0.5",
-    "@types/lodash": "^4.14.74",
-    "@types/node": "^8.0.0",
-    "coveralls": "^2.0.0",
-    "jest": "^20.0.4",
+    "@types/jest": "^23.3.9",
+    "@types/lodash": "^4.14.118",
+    "@types/node": "^10.12.9",
+    "coveralls": "^3.0.2",
+    "jest": "^23.6.0",
     "jest-environment-node-debug": "^2.0.0",
-    "prettier": "^1.5.2",
-    "rimraf": "^2.0.0",
-    "ts-jest": "^20.0.7",
-    "ts-node": "^3.2.0",
-    "tslint": "^5.0.0",
-    "tslint-config-prettier": "^1.1.0",
-    "typescript": "^2.3.0"
+    "prettier": "^1.15.2",
+    "rimraf": "^2.6.2",
+    "ts-jest": "^23.10.4",
+    "ts-node": "^7.0.1",
+    "tslint": "^5.11.0",
+    "tslint-config-prettier": "^1.16.0",
+    "typescript": "^3.1.6"
   },
   "engines": {
     "node": ">=6.0.0"
