@@ -15,6 +15,7 @@
     "removeComments": true,
     "inlineSourceMap": true,
     "types": [
+      "jest",
       "lodash",
       "node"
     ],

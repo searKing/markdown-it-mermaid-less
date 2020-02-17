@@ -28,27 +28,28 @@ A--&gt;C;
 B--&gt;D;
 C--&gt;D;</p>
 -->`,
-  head: `<script src="/home/searking/workspace/vscode/markdown-it-mermaid-less/node_modules/mermaid/dist/mermaid.min.js">
+  head: `<script src="node_modules/mermaid/dist/mermaid.min.js">
     <script type="text/javascript">
         mermaid.initialize({startOnLoad: true, theme: 'forest'});
     </script>`,
 };
 
 ((md: string) => {
-  const defaultRootWebPath = path.join(__dirname, '..');
+  const defaultRootWebPath = path.relative(path.join(__dirname, '..'), path.join(__dirname, ".."));
+
   // console.log('defaultRootWebPath= ', defaultRootWebPath);
   const options = {
     rootWebPath: defaultRootWebPath,
   };
 
   const html = index.mermaid2html(md, options);
-  test('Should mermaid2html success', () => {
+  test('Should mermaid2html head success', () => {
     // console.log("head = ", html.head)
     // console.log("head = ", expectTaskList.head)
 
     expect(html.head === expectTaskList.head).toBeTruthy();
   });
-  test('Should mermaid2html success', () => {
+  test('Should mermaid2html body success', () => {
     // console.log("body = ", html.body)
     // console.log("body = ", expectTaskList.body)
     expect(html.body === expectTaskList.body).toBeTruthy();

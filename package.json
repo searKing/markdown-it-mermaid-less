@@ -34,36 +34,36 @@
     "watch:test": "jest --watch"
   },
   "dependencies": {
-    "eslint": "^5.9.0",
-    "file-url": "^2.0.2",
-    "fsevents": "^2.0.1",
-    "lodash": "^4.14.118",
-    "markdown-it": "^8.4.2",
+    "eslint": "^6.8.0",
+    "file-url": "^3.0.0",
+    "fsevents": "^2.1.2",
+    "lodash": "^4.17.15",
+    "markdown-it": "^10.0.0",
     "markdown-it-container": "^2.0.0",
-    "mermaid": "^7.1.2",
+    "mermaid": "^8.4.7",
     "path": "^0.12.7"
   },
   "devDependencies": {
-    "@types/jest": "^23.3.9",
-    "@types/lodash": "^4.14.118",
-    "@types/node": "^10.12.9",
-    "coveralls": "^3.0.2",
-    "jest": "^23.6.0",
+    "@types/jest": "^25.1.2",
+    "@types/lodash": "^4.14.149",
+    "@types/node": "^13.7.1",
+    "coveralls": "^3.0.9",
+    "jest": "^25.1.0",
     "jest-environment-node-debug": "^2.0.0",
-    "prettier": "^1.15.2",
-    "rimraf": "^2.6.2",
-    "ts-jest": "^23.10.4",
-    "ts-node": "^7.0.1",
-    "tslint": "^5.11.0",
-    "tslint-config-prettier": "^1.16.0",
-    "typescript": "^3.1.6"
+    "prettier": "^1.19.1",
+    "rimraf": "^3.0.2",
+    "ts-jest": "^25.2.0",
+    "ts-node": "^8.6.2",
+    "tslint": "^6.0.0",
+    "tslint-config-prettier": "^1.18.0",
+    "typescript": "^3.7.5"
   },
   "engines": {
     "node": ">=6.0.0"
   },
   "jest": {
     "transform": {
-      ".(ts)": "<rootDir>/node_modules/ts-jest/preprocessor.js"
+      ".(ts)": "ts-jest"
     },
     "testRegex": "(/__tests__/.*|\\.(test|spec))\\.(ts|js)$",
     "moduleFileExtensions": [
