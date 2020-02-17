@@ -1,6 +1,6 @@
 {
   "name": "markdown-it-mermaid-less",
-  "version": "0.0.3",
+  "version": "0.0.4",
   "description": "mermaid load plugin for [markdown-it](https://github.com/markdown-it/markdown-it) markdown parser.",
   "license": "MIT",
   "repository": "https://github.com/searKing/markdown-it-mermaid-less",
