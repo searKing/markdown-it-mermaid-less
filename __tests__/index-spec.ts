@@ -35,7 +35,10 @@ C--&gt;D;</p>
 };
 
 ((md: string) => {
-  const defaultRootWebPath = path.relative(path.join(__dirname, '..'), path.join(__dirname, ".."));
+  const defaultRootWebPath = path.relative(
+    path.join(__dirname, '..'),
+    path.join(__dirname, '..')
+  );
 
   // console.log('defaultRootWebPath= ', defaultRootWebPath);
   const options = {
