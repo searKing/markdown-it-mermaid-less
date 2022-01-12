@@ -38,7 +38,7 @@
     "file-url": "^3.0.0",
     "fsevents": "^2.1.2",
     "lodash": "^4.17.15",
-    "markdown-it": "^10.0.0",
+    "markdown-it": "^12.3.2",
     "markdown-it-container": "^2.0.0",
     "mermaid": "^8.4.7",
     "path": "^0.12.7"
