@@ -1,7 +1,5 @@
-import { MermaidBase } from './MermaidBase';
-export interface IMermaidRenderHTMLOptions {
-    debug?: boolean;
-    renderer?: any;
+import { IMermaidBaseOptions, MermaidBase } from "./MermaidBase";
+export interface IMermaidRenderHTMLOptions extends IMermaidBaseOptions {
     rootWebPath?: string;
 }
 export interface IMermaidRenderHTML {
@@ -10,7 +8,7 @@ export interface IMermaidRenderHTML {
 }
 export declare class MermaidRenderHTML extends MermaidBase {
     private head;
-    private rootWebPath;
+    private readonly rootWebPath;
     constructor(options?: IMermaidRenderHTMLOptions);
     getRenderHead(forceMode: boolean): string;
     getRenderHTML(mdContent: string): IMermaidRenderHTML;

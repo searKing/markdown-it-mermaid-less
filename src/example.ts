@@ -1,10 +1,10 @@
-import * as path from 'path';
+import * as path from "path";
 
 import {
-  IMermaid2htmlOptions,
-  IMermaid2htmlReturn,
-  mermaid2html,
-} from './markdown-it-mermaid-less';
+	IMermaid2htmlOptions,
+	IMermaid2htmlReturn,
+	mermaid2html,
+} from "./markdown-it-mermaid-less";
 
 const taskList: string = `
 \`\`\`mermaid
@@ -28,33 +28,33 @@ const mixed: string = `
     - [ ] GFM task list 4-2
 
 \`\`\`mermaid
-graph LR;  
-　　A-->B;    
-　　A-->C;  
-　　B-->D;  
-　　C-->D;  
+graph LR;
+    A-->B;
+    A-->C;
+    B-->D;
+    C-->D;
 \`\`\`
 `;
 
 ((md: string) => {
-  const defaultRootWebPath = path.join(__dirname, '..');
-  // console.log('defaultRootWebPath= ', defaultRootWebPath);
-  const options: IMermaid2htmlOptions = {
-    rootWebPath: defaultRootWebPath,
-  };
+	const defaultRootWebPath = path.join(__dirname, "..");
+	// console.log('defaultRootWebPath= ', defaultRootWebPath);
+	const options: IMermaid2htmlOptions = {
+		rootWebPath: defaultRootWebPath,
+	};
 
-  const html: IMermaid2htmlReturn = mermaid2html(md, options);
-  console.log('html = ', html);
-  return;
+	const html: IMermaid2htmlReturn = mermaid2html(md, options);
+	console.log("html = ", html);
+	return;
 })(taskList);
 ((md: string) => {
-  const defaultRootWebPath = path.join(__dirname, '..');
-  // console.log('defaultRootWebPath= ', defaultRootWebPath);
-  const options: IMermaid2htmlOptions = {
-    rootWebPath: defaultRootWebPath,
-  };
+	const defaultRootWebPath = path.join(__dirname, "..");
+	// console.log('defaultRootWebPath= ', defaultRootWebPath);
+	const options: IMermaid2htmlOptions = {
+		rootWebPath: defaultRootWebPath,
+	};
 
-  const html: IMermaid2htmlReturn = mermaid2html(md, options);
-  console.log('html = ', html);
-  return;
+	const html: IMermaid2htmlReturn = mermaid2html(md, options);
+	console.log("html = ", html);
+	return;
 })(mixed);

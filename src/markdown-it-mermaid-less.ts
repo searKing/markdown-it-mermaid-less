@@ -1,78 +1,73 @@
-'use strict';
+"use strict";
 import {
-  IMermaidRenderHTML,
-  IMermaidRenderHTMLOptions,
-  MermaidRenderHTML,
-} from './render/MermaidRenderHTML';
-import { Log } from './utils/log';
+	IMermaidRenderHTMLOptions,
+	MermaidRenderHTML,
+} from "./render/MermaidRenderHTML";
+
 export interface IMermaid2htmlOptions {
-  debug?: boolean;
-  renderer?: any;
-  rootWebPath?: string;
+	debug?: boolean;
+	renderer?: any;
+	rootWebPath?: string;
 }
+
 export interface IMermaid2htmlReturn {
-  body?: string;
-  head?: string;
+	body?: string;
+	head?: string;
 }
+
 export interface IMermaidLessPluginOptions {
-  debug?: boolean;
-  returnHead?: string;
-  rootWebPath?: string;
+	debug?: boolean;
+	returnHead?: string;
+	rootWebPath?: string;
 }
+
 export function mermaid_pro_plugin(
-  md: any,
-  options: IMermaidLessPluginOptions
+	md: any,
+	options: IMermaidLessPluginOptions,
 ): void {
-  const ro: IMermaidRenderHTMLOptions = {
-    debug: options.debug,
-    renderer: md,
-    rootWebPath: options.rootWebPath,
-  };
-  const mr = new MermaidRenderHTML(ro);
-  mr.registerThisPlugin();
-  options.returnHead = mr.getRenderHead(true);
-  return;
+	const ro: IMermaidRenderHTMLOptions = {
+		debug: options.debug,
+		renderer: md,
+		rootWebPath: options.rootWebPath,
+	};
+	const mr = new MermaidRenderHTML(ro);
+	mr.registerThisPlugin();
+	options.returnHead = mr.getRenderHead(true);
+	return;
 }
+
 export function mermaid2html(
-  markdownContent: string,
-  options: IMermaid2htmlOptions
+	markdownContent: string,
+	options: IMermaid2htmlOptions,
 ): IMermaid2htmlReturn {
-  if (typeof markdownContent !== 'string') {
-    throw Error('first argument must be a string');
-  }
-  const md = options.renderer || require('markdown-it')();
-  const ro: IMermaidLessPluginOptions = {
-    debug: options.debug,
-    rootWebPath: options.rootWebPath,
-  };
+	const ro: IMermaidLessPluginOptions = {
+		debug: options.debug,
+		rootWebPath: options.rootWebPath,
+	};
 
-  const mr = new MermaidRenderHTML(ro);
-  const html: IMermaid2htmlReturn = mr.getRenderHTML(markdownContent);
+	const mr = new MermaidRenderHTML(ro);
+	const html = mr.getRenderHTML(markdownContent);
 
-  if (!!options && options.debug) {
-    html.body = debugHeader() + '\n' + html.body;
-  }
-  return html;
+	if (!!options && options.debug) {
+		html.body = debugHeader() + "\n" + html.body;
+	}
+	return html;
 }
-function log(msg: string, debug: boolean) {
-  if (debug) {
-    Log.print(msg);
-  }
-}
+
 function debugHeader() {
-  const info = require('../package.json') || {};
-  const debugHeaderStr =
-    '<!--' +
-    ' this HTML was generated using markdown-it-mermaid-pro version ' +
-    info.version +
-    '.' +
-    ' see an issue? file at ' +
-    info.issuesUrl +
-    '.' +
-    ' please include the version in your issue. thanks for using markdown2html-pro!' +
-    ' to learn more, visit ' +
-    info.repositoryUrl +
-    '.' +
-    '  -->';
-  return debugHeaderStr;
+	const info = require("../package.json") || {};
+	return (
+		"<!--" +
+		" this HTML was generated using markdown-it-mermaid-less version " +
+		info.version +
+		"." +
+		" see an issue? file at " +
+		info.bugs +
+		"." +
+		" please include the version in your issue. thanks for using markdown2html-pro!" +
+		" to learn more, visit " +
+		info.repository +
+		"." +
+		"  -->"
+	);
 }

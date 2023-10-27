@@ -1,79 +1,85 @@
-'use strict';
-import { defaults } from 'lodash';
-
-import * as path from 'path';
+"use strict";
+import { defaults } from "lodash";
+import * as MarkdownIt from "markdown-it";
+import * as MarkdownItContainer from "markdown-it-container";
 
 export interface IMermaidBaseOptions {
-  debug?: boolean;
-  renderer?: any;
+	debug?: boolean;
+	renderer?: MarkdownIt;
 }
+
 export class MermaidBase {
-  private renderer: any;
+	private readonly renderer: MarkdownIt;
 
-  public constructor(options?: IMermaidBaseOptions) {
-    const defaultOptions: IMermaidBaseOptions = {
-      debug: false,
-      renderer: require('markdown-it')(),
-    };
-    options = options || {};
-    defaults(options, defaultOptions);
+	public constructor(options?: IMermaidBaseOptions) {
+		const defaultOptions: IMermaidBaseOptions = {
+			debug: false,
+			renderer: MarkdownIt(),
+		};
+		options = options || {};
+		defaults(options, defaultOptions);
 
-    this.renderer = options.renderer;
-    return this;
-  }
+		this.renderer = options.renderer || MarkdownIt();
+		return this;
+	}
 
-  public getRenderer(): any {
-    return this.renderer;
-  }
-  public loadModules(render: any) {
-    this.container_what(render, 'mermaid');
-  }
-  public handleMermaid(mermaidContent: string): string {
-    return mermaidContent;
-  }
-  // ```tag
-  // ```
-  private container_what(md: any, tag: string): any {
-    // ^${tag}\s+(.*)$
-    const re = new RegExp('^' + tag + '(.*)$', 'i');
+	public getRenderer = (): MarkdownIt => this.renderer;
 
-    // const re = new RegExp("^" + tag + "\\s+(.*)$");
-    return md.use(require('markdown-it-container'), tag, {
-      marker: '`',
-      render: (tokens: any, idx: number, options: any, env: any, self: any) => {
-        // console.log('tokens[' + idx + '] = ' + tokens[idx].info);
-        // console.log('tokens = ' + JSON.stringify(tokens) );
-        // const m = tokens[idx].info.trim().match(re);
+	public loadModules(render: MarkdownIt): void {
+		this.container_what(render, "mermaid");
+	}
 
-        if (tokens[idx].nesting === 1) {
-          const mermaidContent = this.getContentFromTokens(tokens, idx);
-          // console.log('mermaidContent = ', mermaidContent);
+	public handleMermaid(mermaidContent: string): string {
+		return mermaidContent;
+	}
 
-          const mermaidHtml = this.handleMermaid(mermaidContent);
-          // opening tag
-          return `${mermaidHtml}` + '<!--';
-        } else {
-          // closing tag
-          return '-->';
-        }
-      },
-      validate: (params: any) => {
-        return params.trim().match(re);
-      },
-    });
-  }
+	// ```tag
+	// ```
+	private container_what(md: MarkdownIt, tag: string): any {
+		// ^${tag}\s+(.*)$
+		const re = new RegExp("^" + tag + "(.*)$", "i");
 
-  private getContentFromTokens(tokens: any, startIdx: number) {
-    let mermaidContent = '';
+		// const re = new RegExp("^" + tag + "\\s+(.*)$");
+		return md.use(MarkdownItContainer, tag, {
+			marker: "`",
+			render: (
+				tokens: MarkdownIt.Token[],
+				idx: number,
+				options: MarkdownIt.Options,
+				env: any,
+			) => {
+				// console.log('tokens[' + idx + '] = ' + tokens[idx].info);
+				// console.log('tokens = ' + JSON.stringify(tokens) );
+				// const m = tokens[idx].info.trim().match(re);
+				if (tokens[idx].nesting === 1) {
+					const mermaidContent = this.getContentFromTokens(tokens, idx);
+					// console.log('mermaidContent = ', mermaidContent);
 
-    for (let index = startIdx; index < tokens.length; index++) {
-      const token = tokens[index];
-      if (token.type === 'inline') {
-        mermaidContent = token.content;
-        break;
-      }
-    }
+					const mermaidHtml = this.handleMermaid(mermaidContent);
+					// opening tag
+					return `${mermaidHtml}` + "<!--";
+				} else {
+					// closing tag
+					return "-->";
+				}
+			},
+			validate: (params: string): boolean => {
+				return !!params.trim().match(re);
+			},
+		});
+	}
 
-    return mermaidContent;
-  }
+	private getContentFromTokens(tokens: MarkdownIt.Token[], startIdx: number) {
+		let mermaidContent = "";
+
+		for (let index = startIdx; index < tokens.length; index++) {
+			const token = tokens[index];
+			if (token.type === "inline") {
+				mermaidContent = token.content;
+				break;
+			}
+		}
+
+		return mermaidContent;
+	}
 }

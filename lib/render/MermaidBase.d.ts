@@ -1,12 +1,13 @@
+import * as MarkdownIt from "markdown-it";
 export interface IMermaidBaseOptions {
     debug?: boolean;
-    renderer?: any;
+    renderer?: MarkdownIt;
 }
 export declare class MermaidBase {
-    private renderer;
+    private readonly renderer;
     constructor(options?: IMermaidBaseOptions);
-    getRenderer(): any;
-    loadModules(render: any): void;
+    getRenderer: () => MarkdownIt;
+    loadModules(render: MarkdownIt): void;
     handleMermaid(mermaidContent: string): string;
     private container_what;
     private getContentFromTokens;
