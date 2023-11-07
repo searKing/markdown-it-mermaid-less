@@ -53,8 +53,8 @@ C--&gt;D;</p>
 		expect(html.head === expectTaskList.head).toBeTruthy();
 	});
 	test("Should mermaid2html body success", () => {
-		console.log("body = ", html.body);
-		console.log("body = ", expectTaskList.body);
+		// console.log("body = ", html.body);
+		// console.log("body = ", expectTaskList.body);
 		expect(html.body === expectTaskList.body).toBeTruthy();
 	});
 	return;

@@ -42,12 +42,7 @@ export class MermaidBase {
 		// const re = new RegExp("^" + tag + "\\s+(.*)$");
 		return md.use(MarkdownItContainer, tag, {
 			marker: "`",
-			render: (
-				tokens: MarkdownIt.Token[],
-				idx: number,
-				options: MarkdownIt.Options,
-				env: any,
-			) => {
+			render: (tokens: MarkdownIt.Token[], idx: number) => {
 				// console.log('tokens[' + idx + '] = ' + tokens[idx].info);
 				// console.log('tokens = ' + JSON.stringify(tokens) );
 				// const m = tokens[idx].info.trim().match(re);
